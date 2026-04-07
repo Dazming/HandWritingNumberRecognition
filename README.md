@@ -9,6 +9,7 @@ HandWritingNumber/
 ├── model.py            # CNN 模型定义
 ├── minist_train.py     # 训练脚本
 ├── mnist_predict.py    # 预测/展示脚本
+├── nn_predict_demo.py  # 神经网络预测过程演示
 ├── mnist_model.pkl     # 训练好的模型权重
 ├── data/               # MNIST 数据集目录
 └── README.md
@@ -45,3 +46,15 @@ python mnist_predict.py
 - 按任意键查看下一张图片
 - 按 ESC 退出
 - 绿色边框 = 正确，红色边框 = 错误
+
+## 神经网络预测过程演示
+
+python nn_predict_demo.py
+
+可视化展示神经网络预测的内部工作过程：
+- **左列**: 原始输入图片 (28×28 灰度图)
+- **中列**: 卷积层特征图 (32 张 28×28) 和池化层特征图 (32 张 14×14)
+- **右列**: 10 个数字的 Softmax 置信度分布
+- **底部**: 张量形状变化流程
+
+按任意键查看下一张图片，按 ESC 退出。
