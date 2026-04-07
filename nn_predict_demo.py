@@ -18,7 +18,7 @@ import torch.utils.data as utils
 import torch.nn.functional as F
 import cv2
 import numpy as np
-from model import Model
+
 
 
 # ==================== 加载数据集和模型 ====================
