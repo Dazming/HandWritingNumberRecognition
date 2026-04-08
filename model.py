@@ -44,24 +44,22 @@ class Model(torch.nn.Module):
             #   kernel_size=5:  卷积核大小为5×5
             #   padding=2:      在图片边缘补0，防止边缘信息丢失
             #                   补2圈后，28×28的图片变成32×32
+            #经过卷积层后，图片尺寸变为 28×28
             torch.nn.Conv2d(in_channels=1, out_channels=32, kernel_size=5, padding=2),
-
             # ---------- 第2层：批标准化 ----------
             # torch.nn.BatchNorm2d: 对每批数据进行标准化，加速训练
             # 参数32表示我们有32个特征通道
             # 作用：让数据分布在0附近，便于网络学习
             torch.nn.BatchNorm2d(32),
-
             # ---------- 第3层：激活函数 ----------
             # torch.nn.ReLU: 线性整流函数，公式：max(0, x)
             # 作用：给网络引入非线性，让网络能学习复杂模式
             torch.nn.ReLU(),
-
             # ---------- 第4层：最大池化 ----------
             # torch.nn.MaxPool2d: 最大池化，降低图片尺寸
             # 参数2表示2×2的窗口，步长也为2
             # 作用：减少计算量，提取主要特征
-            # 32×32 → 16×16
+            # 28×28 → 14×14
             torch.nn.MaxPool2d(2),
         )
 
@@ -69,7 +67,7 @@ class Model(torch.nn.Module):
         # torch.nn.Linear: 全连接层，所有神经元都相互连接
         # 参数说明：
         #   in_features=14*14*32:  输入特征数 = 14×14×32 = 6272
-        #                         这是因为经过池化后，32×32变成了14×14
+        #                         这是因为经过池化后，28×28变成了14×14
         #   out_features=10:       输出10个值，对应数字0-9的预测概率
         self.fc = torch.nn.Linear(in_features=14*14*32, out_features=10)
 
